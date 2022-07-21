@@ -8,17 +8,12 @@ import geocoder
 pd.set_option('display.max_rows', None)
 
 
-## add the user entry logic (check website justfoodfordogs)
-
-## add the products and the logic
-
 ## add color to the text
-
-## add linespaces to the text
-
-
 # Google Maps API
 
+## ask if you want to save one entry of the pet food or hospitals or pet shops etc
+
+## find
 
 
 api_key = 'AIzaSyDhqY1U1q5WVGMord6QXlw8ZcgwaamvRbQ' # Gmaps API key
@@ -40,6 +35,7 @@ def beginning():
         searching()
     elif start == '2':
         food()
+    search_again()
 ### Food code missing
 
 def searching():
@@ -78,11 +74,11 @@ def searching():
 
         if my_radius.isdigit():
         
-            my_radius = int(my_radius)*1000
+            my_radius = abs(int(my_radius)*1000)
 
         elif my_radius.split('.')[0].isdigit() and my_radius.count('.') == 1:
             
-            my_radius = float(my_radius)*1000
+            my_radius = abs(float(my_radius)*1000)
 
         else:
             
@@ -140,7 +136,7 @@ def searching():
             print(vet_hospital_df.head(10)) ## need to get new names for open now values, maybe reorder them
 
         except:
-            print("There are no veterinary hospitals within this radius. Try increasing the radius") ## call to the API might not retrieve anything
+            print("The API could not retrieve any values. Please try again") ## call to the API might not retrieve anything
 
         ## once any of these dataframes are displayed, we need to find a way to ask if the user wants to research again.
 
@@ -172,7 +168,7 @@ def searching():
             print(pet_shop_df.head(10)) ## need to get new names for open now values, maybe reorder them
 
         except:
-            print("There are no pet shops within this radius. Try increasing the radius") ## call to the API might not retrieve anything
+            print("The API could not retrieve any values. Please try again") ## call to the API might not retrieve anything
 
     elif my_search == '3':
 
@@ -205,7 +201,7 @@ def searching():
             print(dog_park_df.head(10)) ## need to get new names for open now values, maybe reorder them
 
         except:
-            print("There are no dog parks within this radius. Try increasing the radius") ## call to the API might not retrieve anything
+            print("The API could not retrieve any values. Please try again") ## call to the API might not retrieve anything
 
 
 
@@ -221,7 +217,7 @@ def search_again():
         beginning()
 
     else:
-        print('thanks')
+        print('Thanks for using our application!')
 
 
 
@@ -236,7 +232,7 @@ def food():
 
     age_dict = {'1':'Puppy','2':'Adult','3':'Senior'}
 
-    brand_prompt = input('Would you like to select a specific brand, or see all the options? Y or N')
+    brand_prompt = input('Would you like to select a specific brand? Y or N')
 
     while brand_prompt.lower() not in(['y','n']):
 
@@ -265,9 +261,8 @@ def food():
 
 
 
-beginning()
 
 
-search_again()
+
 
         
